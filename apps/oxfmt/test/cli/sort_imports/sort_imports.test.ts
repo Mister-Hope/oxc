@@ -5,6 +5,13 @@ import { runCli } from "../utils";
 const fixturesDir = join(import.meta.dirname, "fixtures");
 
 describe("sort_imports", () => {
+  it("should sort imports when enabled with `true` (boolean)", async () => {
+    const cwd = join(fixturesDir, "boolean_true");
+    const result = await runCli(cwd, ["--check", "input.ts"]);
+
+    expect(result.exitCode).toBe(0);
+  });
+
   it("should sort imports with customGroups", async () => {
     const cwd = join(fixturesDir, "custom_groups");
     const result = await runCli(cwd, ["--check", "input.ts"]);
